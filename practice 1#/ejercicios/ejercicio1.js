@@ -5,4 +5,3 @@ boton.addEventListener("click", function () {
     mensaje.textContent = "Hola mundo";
 });
 
-

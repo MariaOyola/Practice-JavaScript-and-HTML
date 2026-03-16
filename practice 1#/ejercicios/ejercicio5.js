@@ -8,7 +8,7 @@ botonlista.addEventListener("click", function () {
     let texto = input.value; 
     let elemento = document.createElement("li"); 
 
-elento.textContent = texto; 
+elemento.textContent = texto; 
 lista.appendChild(elemento); 
     
 })
