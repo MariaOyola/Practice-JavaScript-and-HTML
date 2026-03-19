@@ -1,16 +1,21 @@
-let botonrojo = document.getElementById("botonrojo"); 
-let botonverde = document.getElementById("botonverde"); 
-let botonazul = document.getElementById("botonazul"); 
+document.addEventListener("DOMContentLoaded", function () {
 
-botonrojo.addEventListener("click", function () {
-    document.body.style.backgroundColor = "red";
-}
-)
+    const botonRojo = document.getElementById("botonrojo");
+    const botonVerde = document.getElementById("botonverde");
+    const botonAzul = document.getElementById("botonazul");
 
-botonazul.addEventListener("click", function () {
-    document.body.style.backgroundColor = "blue"; 
+    const contenedor = document.querySelector(".contenido");
 
-})
-botonverde.addEventListener("click", function () {
-    document.body.style.backgroundColor = "green"; 
-})
+    botonRojo.addEventListener("click", () => {
+        contenedor.style.backgroundColor = "red";
+    });
+
+    botonVerde.addEventListener("click", () => {
+        contenedor.style.backgroundColor = "green";
+    });
+
+    botonAzul.addEventListener("click", () => {
+        contenedor.style.backgroundColor = "blue";
+    });
+
+});

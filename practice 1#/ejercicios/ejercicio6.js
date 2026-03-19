@@ -1,23 +1,26 @@
-let formulario = document.getElementById("formulario"); 
+document.addEventListener("DOMContentLoaded", function () {
 
-let nombre = document.getElementById ("nombre"); 
-let edad = document.getElementById ("edad"); 
-let correo = document.getElementById ("correo"); 
-let error = document.getElementById ("error"); 
+    let formulario = document.getElementById("formulario"); 
 
- formulario.addEventListener("submit", function (event) {
+    let nombre = document.getElementById("nombre6"); 
+    let edad = document.getElementById("edad6"); 
+    let correo = document.getElementById("correo6"); 
+    let error = document.getElementById("error"); 
 
-    event.preventDefault(); 
-    // Evita que la página se recargue
-    
-    if (nombre.value === "" || edad.value === "" || correo.value === "") {
+    formulario.addEventListener("submit", function (event) {
 
-        error.textContent ="Debe completar todos los campos"; 
+        event.preventDefault(); 
 
-    } else {
-        error.textContent = "los campos fueron completados correcctamente"; 
-    }
+        if (nombre.value === "" || edad.value === "" || correo.value === "") {
+            error.textContent = "Debe completar todos los campos"; 
+            error.style.color = "red"; // mejor visual
+        } else {
+            error.textContent = "Campos completados correctamente"; 
+            error.style.color = "green"; // mejor visual
 
+            formulario.reset(); // limpia el formulario 
+        }
 
- })
+    });
 
+});

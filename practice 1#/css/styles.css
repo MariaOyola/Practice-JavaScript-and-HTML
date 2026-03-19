@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(135deg, #5f2c82, #8bd3fc);
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.menu button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  cursor: pointer;
+}
+
+.menu button:hover {
+  background: rgba(255,255,255,0.4);
+}
+
+.contenido {
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 15px;
+  min-height: 200px;
+}
+
+.ejercicio {
+  display: none;
+}
+
+.ejercicio.active {
+  display: block;
+}
+
+input {
+  padding: 8px;
+  margin: 5px 0;
+  width: 100%;
+}
+
+button {
+  margin-top: 5px;
+}

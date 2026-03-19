@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", function () {
+
 let botonlista_ = document.getElementById("botonlista_"); 
 let input_ = document.getElementById("input_"); 
 let lista_ = document.getElementById("lista_"); 
@@ -21,3 +23,5 @@ botonlista_.addEventListener("click", function () {
 
     input_.value = ""; 
 });
+
+}); 

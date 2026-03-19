@@ -1,9 +1,9 @@
 let boton2 = document.getElementById("boton2");
 
-let input1 = document.getElementById("numero1");
-let input2 = document.getElementById("numero2");
+let input1 = document.getElementById("numero1_e2");
+let input2 = document.getElementById("numero2_e2");
  
-let resultadoText = document.getElementById("resultado")
+let resultadoText = document.getElementById("resultado2")
 
 boton2.addEventListener("click", function () {
 

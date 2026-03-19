@@ -1,34 +1,40 @@
-let botonCalcular = document.getElementById("botonCalcular");
+document.addEventListener("DOMContentLoaded", function () {
 
-botonCalcular.addEventListener("click", function () {
+    let botonCalcular = document.getElementById("botonCalcular");
 
-    let opcion = prompt("Escribe: suma, resta, multiplicar o dividir");
+    botonCalcular.addEventListener("click", function () {
 
-    let numero1 = Number(document.getElementById("numero1").value);
-    let numero2 = Number(document.getElementById("numero2").value);
+        let opcion = prompt("Escribe: suma, resta, multiplicar o dividir");
+        let numero1 = Number(document.getElementById("numero1_e7").value);
+        let numero2 = Number(document.getElementById("numero2_e7").value);
+        let resultado = document.getElementById("resultado7");
 
-    let resultado = document.getElementById("resultado");
+        switch (opcion) {
 
-    switch (opcion) {
+            case "suma":
+                resultado.textContent = "Resultado: " + (numero1 + numero2);
+                break;
 
-        case "suma":
-            resultado.textContent = "Resultado: " + (numero1 + numero2);
-            break;
+            case "resta":
+                resultado.textContent = "Resultado: " + (numero1 - numero2);
+                break;
 
-        case "resta":
-            resultado.textContent = "Resultado: " + (numero1 - numero2);
-            break;
+            case "multiplicar":
+                resultado.textContent = "Resultado: " + (numero1 * numero2);
+                break;
 
-        case "multiplicar":
-            resultado.textContent = "Resultado: " + (numero1 * numero2);
-            break;
+            case "dividir":
+                if (numero2 === 0) {
+                    resultado.textContent = "No se puede dividir entre 0";
+                } else {
+                    resultado.textContent = "Resultado: " + (numero1 / numero2);
+                }
+                break;
 
-        case "dividir":
-            resultado.textContent = "Resultado: " + (numero1 / numero2);
-            break;
+            default:
+                resultado.textContent = "Escribe bien la opción";
+        }
 
-        default:
-            resultado.textContent = "Escribe bien la opción";
-    }
+    });
 
 });

@@ -1,7 +1,6 @@
-let boton = document.getElementById("boton");
-let mensaje = document.getElementById("mensaje");
+let boton = document.getElementById("boton1");
+let mensaje = document.getElementById("mensaje1");
 
 boton.addEventListener("click", function () {
     mensaje.textContent = "Hola mundo";
 });
-
