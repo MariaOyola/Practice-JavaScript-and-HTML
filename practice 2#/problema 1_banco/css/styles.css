@@ -1,0 +1,45 @@
+
+body {
+  font-family: Arial;
+  background: #f0f0f0;
+}
+
+.container {
+  width: 500px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+h1 {
+  text-align: center;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0 10px;
+}
+
+.btn {
+  padding: 8px 12px;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.green { background: green; }
+.red { background: red; }
+.blue { background: blue; }
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.resultado {
+  background: #eee;
+  padding: 15px;
+  margin-top: 10px;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de Estudiantes</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Registro de Estudiantes</h1>
+
+  <!-- Registro -->
+  <section>
+    <h2>Nuevo estudiante</h2>
+
+    <input type="text" id="nombre" placeholder="Nombre">
+    <input type="text" id="programa" placeholder="Programa">
+    <input type="number" id="nota" placeholder="Nota final (0-5)">
+
+    <button class="btn primary" onclick="registrar()">Registrar</button>
+  </section>
+
+  <hr>
+
+  <!-- Selección -->
+  <section>
+    <h2>Consultar estudiante</h2>
+
+    <select id="selectEstudiante"></select>
+    <button class="btn secondary" onclick="verEstudiante()">Ver info</button>
+  </section>
+
+  <hr>
+
+  <div class="resultado" id="resultado">
+    Aquí verás la información...
+  </div>
+</div>
+
+<script src="js/Estudiante.js"></script>
+<script src="js/Sistema.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

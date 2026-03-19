@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema de Biblioteca</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>📚 Biblioteca</h1>
+
+  <!-- Registrar libro -->
+  <section>
+    <h2>Registrar libro</h2>
+    <input type="text" id="titulo" placeholder="Título">
+    <input type="text" id="autor" placeholder="Autor">
+    <button class="btn primary" onclick="registrarLibro()">Registrar</button>
+  </section>
+
+  <hr>
+
+  <!-- Seleccionar libro -->
+  <section>
+    <h2>Gestionar libro</h2>
+    <select id="libroSelect"></select>
+
+    <div class="buttons">
+      <button class="btn green" onclick="prestar()">Prestar</button>
+      <button class="btn blue" onclick="devolver()">Devolver</button>
+      <button class="btn secondary" onclick="verInfo()">Ver info</button>
+    </div>
+  </section>
+
+  <hr>
+
+  <div class="resultado" id="resultado">
+    Información del libro...
+  </div>
+</div>
+
+<script src="js/Libro.js"></script>
+<script src="js/Biblioteca.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Banco Simple</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Banco Simple</h1>
+
+  <!-- Crear cuenta -->
+  <section>
+    <h2>Crear nueva cuenta</h2>
+    <label>Nombre del titular:</label>
+    <input type="text" id="nombre">
+
+    <label>Saldo inicial ($):</label>
+    <input type="number" id="saldoInicial">
+
+    <button class="btn green" onclick="crearCuenta()">Crear cuenta</button>
+  </section>
+
+  <hr>
+
+  <!-- Seleccionar cuenta -->
+  <section>
+    <h2>Seleccionar cuenta</h2>
+    <label>Elegir cliente:</label>
+    <select id="clienteSelect"></select>
+    <button class="btn green" onclick="seleccionarCuenta()">Seleccionar</button>
+  </section>
+
+  <hr>
+
+  <!-- Operaciones -->
+  <section>
+    <h2>Operaciones</h2>
+    <label>Monto ($):</label>
+    <input type="number" id="monto">
+
+    <div class="buttons">
+      <button class="btn green" onclick="depositar()">Ingresar</button>
+      <button class="btn red" onclick="retirar()">Retirar</button>
+      <button class="btn blue" onclick="verSaldo()">Ver Saldo</button>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- Resultado -->
+  <div class="resultado" id="resultado">
+    Aquí verás el resultado...
+  </div>
+</div>
+
+<script src="js/Cuenta.js"></script>
+<script src="js/Banco.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrito de Compras</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>🛒 Carrito de Compras</h1>
+
+  <!-- Agregar producto -->
+  <section>
+    <h2>Agregar producto</h2>
+
+    <input type="text" id="nombre" placeholder="Nombre del producto">
+    <input type="number" id="precio" placeholder="Precio">
+
+    <button class="btn add" onclick="agregarProducto()">Agregar</button>
+  </section>
+
+  <hr>
+
+  <!-- Lista de productos -->
+  <section>
+    <h2>Productos en el carrito</h2>
+
+    <ul id="lista"></ul>
+  </section>
+
+  <hr>
+
+  <!-- Total -->
+  <section>
+    <h2>Total</h2>
+    <p id="total">$0</p>
+  </section>
+</div>
+
+<script src="js/Producto.js"></script>
+<script src="js/Carrito.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

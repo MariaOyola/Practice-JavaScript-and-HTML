@@ -1,0 +1,84 @@
+:root {
+    --color-principal: #6a11cb;
+    --color-secundario: #2575fc;
+    --color-verde: #00c853;
+    --color-blanco: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.hero h2 {
+    font-size: 40px;
+}
+
+/* CONTENEDOR */
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 50px;
+}
+
+/* TARJETAS */
+.card {
+    background: white;
+    color: black;
+    padding: 20px;
+    border-radius: 20px;
+    width: 220px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+/* BOTÓN */
+.boton {
+    background: var(--color-verde);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.boton:hover {
+    background: #00b248;
+}

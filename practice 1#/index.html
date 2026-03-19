@@ -1,81 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<title>Document</title>
-</head>
+    <meta charset="UTF-8">
+    <title>Mis Ejercicios JS</title>
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <!-- Fuente bonita -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
 <body>
 
-// Ejercicio 1
-<section>
-<button id="boton">Mostrar mensaje</button>
-<p id="mensaje"></p>
+<header>
+    <h1>💻 Mis Ejercicios</h1>
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Ejercicios</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>¿Qué te gustaría practicar?</h2>
 </section>
 
-// ejercicio 2
-<section>
-<button id="boton2">Mostrar resultado</button>
-<input id="numero1" type="number">
-<input id="numero2" type="number">
-<p id="resultado"></p>
-</section>
+<div class="container">
 
-// ejercicio 3
-<section>
-<button id="botonrojo">Cambiar a rojo</button>
-<button id="botonverde">Cambiar a verde</button>
-<button id="botonazul">Cambiar a azul</button>
-</section>
+    <div class="card" onclick="ir('ejercicio1.html')">
+        <h3>Ejercicio 1</h3>
+        <p>Entrada de datos</p>
+    </div>
 
-// ejercicio 4
-<section>
-     <button id="botonContador">Incrementar contador</button>
-     <p id="contador">0</p>
-    </section>
+    <div class="card" onclick="ir('ejercicio2.html')">
+        <h3>Ejercicio 2</h3>
+        <p>Condicionales</p>
+    </div>
 
-// ejercicio 5
+    <div class="card" onclick="ir('ejercicio3.html')">
+        <h3>Ejercicio 3</h3>
+        <p>Listas dinámicas</p>
+    </div>
 
-<section>
+</div>
 
-<input id="input" type="text" placeholder="Escribe algo">
-<button id="botonlista">Agregar a la lista</button>
-<ul id="lista"></ul>
-
-</section>
-
-
-// ejercicio 6
-
-<section>
-<form id="formulario">
-<input id="nombre" type="text" placeholder="nombre Ej: Pepa">
-<input id="edad" type="text" placeholder="edad Ej: 20">
-<input id="correo" type="text" placeholder="correo Ej: pepapig@gmail.com">
-<button type="submit">Enviar </button>
-<p id="error"></p>
-</form>
-</section>
-
-// ejercicio 7
-<section>
-<button id="botonCalcular"> ¿ Que quieres calcular?</button>
-
-<input id="numero1" type="number">
-<input id="numero2" type="number">
-
-<p id="resultado"></p>
-</section>
-
-<script src="ejercicios/ejercicio1.js"></script>
-<script src="ejercicios/ejercicio2.js"></script>
-<script src="ejercicios/ejercicio3.js"></script>
-<script src="ejercicios/ejercicio4.js"></script>
-<script src="ejercicios/ejercicio5.js"></script>
-<script src="ejercicios/ejercicio6.js"></script>
-<script src="ejercicios/ejercicio7.js"></script>
-<script src="ejercicios/ejercicio8.js"></script>
-<script src="ejercicios/ejercicio9.js"></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>
-
