@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arquitectura del Sistema · SENA</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --surface2: #1a2235;
+  --border: rgba(255,255,255,0.07);
+  --text: #e8eaf0;
+  --muted: #6b7a99;
+  --accent-coral: #ff6b4a;
+  --accent-teal: #00d4aa;
+  --accent-purple: #a78bfa;
+  --accent-amber: #fbbf24;
+  --accent-blue: #60a5fa;
+  --accent-gray: #94a3b8;
+  --mono: 'Space Mono', monospace;
+  --sans: 'DM Sans', sans-serif;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* GRID BG */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events:none;
+  z-index:0;
+}
+
+.wrapper { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:0 24px 80px; }
+
+/* HEADER */
+header {
+  padding: 48px 0 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+.badge {
+  display:inline-flex; align-items:center; gap:6px;
+  background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.3);
+  color: var(--accent-teal); font-family: var(--mono); font-size:11px;
+  padding: 4px 12px; border-radius:4px; margin-bottom:16px;
+  letter-spacing:0.08em;
+}
+.badge::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent-teal); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+h1 { font-family: var(--mono); font-size: clamp(22px,4vw,36px); font-weight:700; line-height:1.2; margin-bottom:10px; }
+h1 span { color: var(--accent-teal); }
+.subtitle { color: var(--muted); font-size:15px; max-width:520px; line-height:1.6; }
+
+/* NAV TABS */
+.tabs { display:flex; gap:4px; margin-bottom:40px; flex-wrap:wrap; }
+.tab {
+  padding:10px 20px; border-radius:8px; cursor:pointer;
+  font-family: var(--mono); font-size:12px; letter-spacing:0.05em;
+  border: 1px solid var(--border); color: var(--muted);
+  background: transparent; transition: all 0.2s; white-space:nowrap;
+}
+.tab:hover { border-color: rgba(255,255,255,0.15); color: var(--text); }
+.tab.active { background: var(--surface2); border-color: var(--accent-teal); color: var(--accent-teal); }
+
+/* SECTIONS */
+.section { display:none; }
+.section.active { display:block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+/* SECTION TITLE */
+.sec-title {
+  font-family: var(--mono); font-size:13px; color: var(--muted);
+  letter-spacing:0.1em; text-transform:uppercase; margin-bottom:24px;
+  display:flex; align-items:center; gap:10px;
+}
+.sec-title::after { content:''; flex:1; height:1px; background: var(--border); }
+
+/* ARQUITECTURA LAYERS */
+.layers { display:flex; flex-direction:column; gap:6px; }
+.layer {
+  border: 1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  cursor:pointer;
+  transition: border-color 0.2s;
+}
+.layer:hover { border-color: rgba(255,255,255,0.15); }
+.layer.open { border-color: var(--layer-color); }
+
+.layer-header {
+  display:flex; align-items:center; gap:16px;
+  padding: 16px 20px; background: var(--surface);
+}
+.layer-dot { width:10px; height:10px; border-radius:50%; background: var(--layer-color); flex-shrink:0; }
+.layer-num { font-family:var(--mono); font-size:11px; color: var(--muted); min-width:50px; }
+.layer-name { font-weight:500; font-size:15px; flex:1; }
+.layer-tag {
+  font-family:var(--mono); font-size:10px; padding:3px 8px;
+  border-radius:4px; color: var(--layer-color);
+  border: 1px solid var(--layer-color);
+  opacity:0.8;
+}
+.layer-chevron { color: var(--muted); font-size:12px; transition: transform 0.2s; }
+.layer.open .layer-chevron { transform: rotate(90deg); }
+
+.layer-body {
+  display:none; padding:0 20px 20px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+.layer.open .layer-body { display:block; }
+.layer-desc { font-size:14px; color: var(--muted); line-height:1.7; margin: 16px 0 12px; }
+.modules-grid { display:flex; flex-wrap:wrap; gap:8px; }
+.mod-chip {
+  font-family:var(--mono); font-size:11px; padding:5px 12px;
+  border-radius:6px; background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border); color: var(--text);
+}
+.mod-chip.accent { background: rgba(0,0,0,0.3); border-color: var(--layer-color); color: var(--layer-color); }
+
+/* CARPETAS */
+.folders-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:16px; }
+.folder-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius:12px; padding:20px; transition: border-color 0.2s;
+}
+.folder-card:hover { border-color: rgba(255,255,255,0.15); }
+.folder-title {
+  font-family: var(--mono); font-size:13px; font-weight:700;
+  margin-bottom:16px; display:flex; align-items:center; gap:8px;
+}
+.folder-title .icon { font-size:16px; }
+.tree { font-family: var(--mono); font-size:12px; line-height:2.1; }
+.tree-dir { color: var(--accent-blue); }
+.tree-dir2 { color: var(--accent-teal); padding-left:16px; }
+.tree-file { color: var(--muted); padding-left:32px; }
+.tree-file.important { color: var(--accent-amber); }
+
+/* FLUJO */
+.flow { display:flex; flex-direction:column; gap:0; }
+.step {
+  display:flex; gap:20px; align-items:flex-start;
+  animation: fadeIn 0.4s ease both;
+}
+.step-line { display:flex; flex-direction:column; align-items:center; flex-shrink:0; }
+.step-num {
+  width:36px; height:36px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--mono); font-size:13px; font-weight:700;
+  background: var(--surface2); border: 2px solid var(--step-color);
+  color: var(--step-color); flex-shrink:0;
+}
+.step-connector { width:2px; flex:1; min-height:24px; background: linear-gradient(var(--step-color), transparent); opacity:0.3; margin:4px 0; }
+.step:last-child .step-connector { display:none; }
+
+.step-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius:10px; padding:16px 20px; flex:1; margin-bottom:8px;
+  cursor:pointer; transition: all 0.2s;
+}
+.step-card:hover { border-color: var(--step-color); transform: translateX(4px); }
+.step-who {
+  font-family:var(--mono); font-size:10px; letter-spacing:0.08em;
+  text-transform:uppercase; color: var(--step-color); margin-bottom:4px;
+}
+.step-action { font-weight:500; font-size:15px; margin-bottom:4px; }
+.step-detail { font-size:13px; color: var(--muted); line-height:1.5; }
+
+/* ESTADOS */
+.states-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap:16px; }
+.state-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius:12px; padding:20px;
+}
+.state-name { font-family:var(--mono); font-size:13px; font-weight:700; margin-bottom:4px; color:var(--accent-purple); }
+.state-scope { font-size:12px; color: var(--muted); margin-bottom:16px; }
+.state-fields { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
+.field-row { display:flex; justify-content:space-between; align-items:center; font-size:13px; padding:6px 0; border-bottom:1px solid var(--border); }
+.field-row:last-child { border:none; }
+.field-key { font-family:var(--mono); font-size:12px; color: var(--muted); }
+.field-val { font-family:var(--mono); font-size:11px; color: var(--text); }
+.badges-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+.sbadge {
+  font-size:11px; padding:3px 10px; border-radius:20px; font-family:var(--mono);
+}
+.sbadge.green { background:rgba(0,212,100,0.1); color:#4ade80; border:1px solid rgba(0,212,100,0.2); }
+.sbadge.red { background:rgba(255,80,80,0.1); color:#f87171; border:1px solid rgba(255,80,80,0.2); }
+.sbadge.yellow { background:rgba(251,191,36,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.2); }
+.sbadge.blue { background:rgba(96,165,250,0.1); color:#60a5fa; border:1px solid rgba(96,165,250,0.2); }
+.sbadge.gray { background:rgba(148,163,184,0.1); color:#94a3b8; border:1px solid rgba(148,163,184,0.2); }
+
+.redux-box {
+  background: var(--surface); border:1px solid var(--border);
+  border-radius:12px; padding:20px; margin-bottom:16px;
+}
+.redux-title { font-family:var(--mono); font-size:12px; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.redux-title .dot { width:8px; height:8px; border-radius:50%; }
+.redux-fields { font-family:var(--mono); font-size:12px; line-height:2; color: var(--muted); padding-left:16px; border-left:2px solid var(--border); }
+.redux-fields .key { color: var(--accent-blue); }
+.redux-fields .type { color: var(--accent-teal); }
+.redux-fields .comment { color: var(--muted); font-size:11px; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header>
+    <div class="badge">Sistema de Reconocimiento Facial · SENA</div>
+    <h1>Arquitectura <span>Híbrida</span><br>del Sistema</h1>
+    <p class="subtitle">N-Capas + Event-Driven + Edge IoT — documentación interactiva del proyecto de asistencia con reconocimiento facial.</p>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" onclick="showTab('arquitectura')">🏗 Arquitectura</button>
+    <button class="tab" onclick="showTab('carpetas')">📁 Carpetas</button>
+    <button class="tab" onclick="showTab('flujo')">🔄 Flujo</button>
+    <button class="tab" onclick="showTab('estados')">💾 Estados</button>
+  </nav>
+
+  <!-- ===== ARQUITECTURA ===== -->
+  <section class="section active" id="arquitectura">
+    <div class="sec-title">Capas del sistema</div>
+    <div class="layers">
+
+      <div class="layer" style="--layer-color:#ff6b4a" onclick="toggleLayer(this)">
+        <div class="layer-header">
+          <div class="layer-dot"></div>
+          <div class="layer-num">Capa 0</div>
+          <div class="layer-name">Edge IoT · Raspberry Pi</div>
+          <div class="layer-tag">Python</div>
+          <div class="layer-chevron">▶</div>
+        </div>
+        <div class="layer-body">
+          <p class="layer-desc">Es la cámara inteligente que está físicamente en la puerta del ambiente. Detecta la cara del aprendiz, la convierte en un código numérico (vector biométrico) y lo envía al servidor por WiFi. Todo esto pasa sin internet, solo en la red local.</p>
+          <div class="modules-grid">
+            <div class="mod-chip accent">face_capture.py</div>
+            <div class="mod-chip accent">face_encoder.py</div>
+            <div class="mod-chip accent">event_sender.py</div>
+            <div class="mod-chip accent">device_config.py</div>
+            <div class="mod-chip">OpenCV</div>
+            <div class="mod-chip">face_recognition</div>
+            <div class="mod-chip">requests HTTP</div>
+            <div class="mod-chip">retry.py (si falla WiFi)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="layer" style="--layer-color:#a78bfa" onclick="toggleLayer(this)">
+        <div class="layer-header">
+          <div class="layer-dot"></div>
+          <div class="layer-num">Capa 1</div>
+          <div class="layer-name">Presentación · Frontend</div>
+          <div class="layer-tag">React</div>
+          <div class="layer-chevron">▶</div>
+        </div>
+        <div class="layer-body">
+          <p class="layer-desc">Es la página web que ven los usuarios. Cada rol (administrador, instructor, aprendiz) ve pantallas distintas. Aquí se muestran horarios, asistencias, reportes y notificaciones en tiempo real.</p>
+          <div class="modules-grid">
+            <div class="mod-chip accent">pages/auth/</div>
+            <div class="mod-chip accent">pages/dashboard/</div>
+            <div class="mod-chip accent">pages/schedules/</div>
+            <div class="mod-chip accent">pages/reports/</div>
+            <div class="mod-chip accent">pages/profile/</div>
+            <div class="mod-chip">Redux Store</div>
+            <div class="mod-chip">WebSocket (notificaciones)</div>
+            <div class="mod-chip">i18n (idiomas)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="layer" style="--layer-color:#00d4aa" onclick="toggleLayer(this)">
+        <div class="layer-header">
+          <div class="layer-dot"></div>
+          <div class="layer-num">Capa 2</div>
+          <div class="layer-name">API Gateway · El Portero</div>
+          <div class="layer-tag">Node.js</div>
+          <div class="layer-chevron">▶</div>
+        </div>
+        <div class="layer-body">
+          <p class="layer-desc">Es el punto de entrada al servidor. Antes de dejar pasar cualquier petición, verifica que el usuario tiene permiso (JWT), que el dispositivo está registrado, y aplica límites de velocidad para evitar ataques.</p>
+          <div class="modules-grid">
+            <div class="mod-chip accent">auth.middleware.js</div>
+            <div class="mod-chip accent">rbac.middleware.js</div>
+            <div class="mod-chip accent">rateLimit.js</div>
+            <div class="mod-chip">logger.js</div>
+            <div class="mod-chip">JWT verificación</div>
+            <div class="mod-chip">Helmet (seguridad)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="layer" style="--layer-color:#60a5fa" onclick="toggleLayer(this)">
+        <div class="layer-header">
+          <div class="layer-dot"></div>
+          <div class="layer-num">Capa 3</div>
+          <div class="layer-name">Lógica de Negocio · Servicios</div>
+          <div class="layer-tag">Node.js</div>
+          <div class="layer-chevron">▶</div>
+        </div>
+        <div class="layer-body">
+          <p class="layer-desc">Aquí está el cerebro del sistema. Cada servicio se encarga de un área específica: acceso, académica, horarios, asistencia, biometría, reportes y notificaciones.</p>
+          <div class="modules-grid">
+            <div class="mod-chip accent">AccessService</div>
+            <div class="mod-chip accent">AcademicService</div>
+            <div class="mod-chip accent">ScheduleService</div>
+            <div class="mod-chip accent">AttendanceService</div>
+            <div class="mod-chip accent">BiometricService</div>
+            <div class="mod-chip accent">ReportService</div>
+            <div class="mod-chip accent">NotificationService</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="layer" style="--layer-color:#fbbf24" onclick="toggleLayer(this)">
+        <div class="layer-header">
+          <div class="layer-dot"></div>
+          <div class="layer-num">Capa 4</div>
+          <div class="layer-name">Event Bus · Sistema de Alarmas</div>
+          <div class="layer-tag">Event-Driven</div>
+          <div class="layer-chevron">▶</div>
+        </div>
+        <div class="layer-body">
+          <p class="layer-desc">Cuando algo importante ocurre, se lanza un "evento" y varios servicios reaccionan automáticamente. Es como un sistema de alarmas: cuando se detecta una cara, automáticamente se registra asistencia, se genera notificación y se guarda en la bitácora, todo al mismo tiempo.</p>
+          <div class="modules-grid">
+            <div class="mod-chip accent">facial_detected</div>
+            <div class="mod-chip accent">attendance_registered</div>
+            <div class="mod-chip accent">anomaly_found</div>
+            <div class="mod-chip accent">notification_triggered</div>
+            <div class="mod-chip">eventBus.js</div>
+            <div class="mod-chip">listeners/</div>
+            <div class="mod-chip">publishers/</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="layer" style="--layer-color:#94a3b8" onclick="toggleLayer(this)">
+        <div class="layer-header">
+          <div class="layer-dot"></div>
+          <div class="layer-num">Capa 5</div>
+          <div class="layer-name">Datos · Base de Datos</div>
+          <div class="layer-tag">PostgreSQL</div>
+          <div class="layer-chevron">▶</div>
+        </div>
+        <div class="layer-body">
+          <p class="layer-desc">Aquí se guarda permanentemente toda la información: usuarios, horarios, asistencias, vectores biométricos, bitácoras y notificaciones.</p>
+          <div class="modules-grid">
+            <div class="mod-chip accent">PostgreSQL (datos relacionales)</div>
+            <div class="mod-chip accent">Redis (sesiones y caché)</div>
+            <div class="mod-chip accent">File Storage (vectores faciales)</div>
+            <div class="mod-chip">SMTP (correos)</div>
+            <div class="mod-chip">migrations/</div>
+            <div class="mod-chip">seeds/</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== CARPETAS ===== -->
+  <section class="section" id="carpetas">
+    <div class="sec-title">Estructura de carpetas</div>
+    <div class="folders-grid">
+
+      <div class="folder-card">
+        <div class="folder-title" style="color:#60a5fa"><span class="icon">⚙️</span> backend/ (Node.js)</div>
+        <div class="tree">
+          <div class="tree-dir">src/</div>
+          <div class="tree-dir2">config/</div>
+          <div class="tree-file">db.js · env.js</div>
+          <div class="tree-dir2">middlewares/</div>
+          <div class="tree-file important">auth.js · rbac.js</div>
+          <div class="tree-file">logger.js · rateLimit.js</div>
+          <div class="tree-dir2">modules/</div>
+          <div class="tree-file important">access/</div>
+          <div class="tree-file">  controller · service · routes</div>
+          <div class="tree-file important">academic/</div>
+          <div class="tree-file">  programs · fichas · aprendices</div>
+          <div class="tree-file important">schedules/</div>
+          <div class="tree-file">  horarios · ambientes · excepciones</div>
+          <div class="tree-file important">attendance/</div>
+          <div class="tree-file">  registro · validación · anomalías</div>
+          <div class="tree-file important">biometric/</div>
+          <div class="tree-file">  rostro · eventos · bitácora</div>
+          <div class="tree-file important">reports/</div>
+          <div class="tree-file">  pdf · excel · stats</div>
+          <div class="tree-file important">notifications/</div>
+          <div class="tree-file">  generator · email · log</div>
+          <div class="tree-dir2">events/</div>
+          <div class="tree-file important">eventBus.js</div>
+          <div class="tree-file">listeners/ · publishers/</div>
+          <div class="tree-dir2">shared/</div>
+          <div class="tree-file">utils · validators · errors</div>
+          <div class="tree-file important">app.js · server.js</div>
+        </div>
+      </div>
+
+      <div class="folder-card">
+        <div class="folder-title" style="color:#a78bfa"><span class="icon">🖥️</span> frontend/ (React)</div>
+        <div class="tree">
+          <div class="tree-dir">src/</div>
+          <div class="tree-dir2">assets/</div>
+          <div class="tree-file">logos · íconos</div>
+          <div class="tree-dir2">components/</div>
+          <div class="tree-file">ui/ · layout/ · shared/</div>
+          <div class="tree-dir2">pages/</div>
+          <div class="tree-file important">auth/</div>
+          <div class="tree-file">  Login · Register · Recovery</div>
+          <div class="tree-file important">dashboard/</div>
+          <div class="tree-file">  Admin · Instructor · Aprendiz</div>
+          <div class="tree-file important">schedules/</div>
+          <div class="tree-file">  Calendar · HorarioList</div>
+          <div class="tree-file important">environments/</div>
+          <div class="tree-file">  AmbienteForm · Restricciones</div>
+          <div class="tree-file important">reports/</div>
+          <div class="tree-file">  Asistencia · Inconsistencias</div>
+          <div class="tree-file important">profile/</div>
+          <div class="tree-file">  Settings · Configuracion</div>
+          <div class="tree-dir2">store/ (Redux)</div>
+          <div class="tree-file important">authSlice.js</div>
+          <div class="tree-file important">uiSlice.js</div>
+          <div class="tree-file important">notifSlice.js</div>
+          <div class="tree-file important">attendanceSlice.js</div>
+          <div class="tree-dir2">services/</div>
+          <div class="tree-file">api.js · auth.js · websocket.js</div>
+          <div class="tree-dir2">hooks/</div>
+          <div class="tree-file">useAuth · useRol · useNotifs</div>
+          <div class="tree-dir2">utils/ · routes/ · i18n/</div>
+        </div>
+      </div>
+
+      <div class="folder-card">
+        <div class="folder-title" style="color:#ff6b4a"><span class="icon">🤖</span> raspberry/ (Python)</div>
+        <div class="tree">
+          <div class="tree-dir">src/</div>
+          <div class="tree-dir2">capture/</div>
+          <div class="tree-file important">camera.py</div>
+          <div class="tree-file">frame_utils.py</div>
+          <div class="tree-dir2">recognition/</div>
+          <div class="tree-file important">encoder.py</div>
+          <div class="tree-file important">matcher.py</div>
+          <div class="tree-dir2">communication/</div>
+          <div class="tree-file important">sender.py</div>
+          <div class="tree-file">retry.py</div>
+          <div class="tree-dir2">config/</div>
+          <div class="tree-file">device.json · env.py</div>
+          <div class="tree-dir2">logs/</div>
+          <div class="tree-file">eventos_locales.log</div>
+          <div class="tree-file important">main.py</div>
+        </div>
+      </div>
+
+      <div class="folder-card">
+        <div class="folder-title" style="color:#94a3b8"><span class="icon">🗄️</span> database/ (PostgreSQL)</div>
+        <div class="tree">
+          <div class="tree-dir">migrations/</div>
+          <div class="tree-file important">001_access.sql</div>
+          <div class="tree-file">  usuarios · credenciales · roles</div>
+          <div class="tree-file important">002_academic.sql</div>
+          <div class="tree-file">  programas · fichas · aprendices</div>
+          <div class="tree-file important">003_schedules.sql</div>
+          <div class="tree-file">  horarios · ambientes · excepciones</div>
+          <div class="tree-file important">004_biometric.sql</div>
+          <div class="tree-file">  rostros · eventos · dispositivos</div>
+          <div class="tree-file important">005_notifications.sql</div>
+          <div class="tree-file">  notificaciones · envios</div>
+          <div class="tree-dir">seeds/</div>
+          <div class="tree-file">roles.sql</div>
+          <div class="tree-file">permisos.sql</div>
+          <div class="tree-file">admin_default.sql</div>
+          <div class="tree-dir">docker/</div>
+          <div class="tree-file">docker-compose.yml</div>
+          <div class="tree-file">Dockerfile</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== FLUJO ===== -->
+  <section class="section" id="flujo">
+    <div class="sec-title">Flujo paso a paso</div>
+    <div class="flow">
+
+      <div class="step" style="--step-color:#ff6b4a">
+        <div class="step-line"><div class="step-num">1</div><div class="step-connector"></div></div>
+        <div class="step-card">
+          <div class="step-who">Raspberry Pi · camera.py</div>
+          <div class="step-action">La cámara detecta una cara</div>
+          <div class="step-detail">OpenCV captura el frame. Si detecta un rostro humano, lo recorta y lo pasa al módulo de codificación.</div>
+        </div>
+      </div>
+
+      <div class="step" style="--step-color:#ff6b4a">
+        <div class="step-line"><div class="step-num">2</div><div class="step-connector"></div></div>
+        <div class="step-card">
+          <div class="step-who">Raspberry Pi · encoder.py</div>
+          <div class="step-action">Convierte la cara en un código numérico</div>
+          <div class="step-detail">La librería face_recognition convierte la imagen del rostro en 128 números (vector biométrico). Ese vector es único por persona.</div>
+        </div>
+      </div>
+
+      <div class="step" style="--step-color:#ff6b4a">
+        <div class="step-line"><div class="step-num">3</div><div class="step-connector"></div></div>
+        <div class="step-card">
+          <div class="step-who">Raspberry Pi · sender.py</div>
+          <div class="step-action">Envía el vector al servidor por WiFi</div>
+          <div class="step-detail">Hace una petición HTTP POST a /api/facial con el vector, el ID del dispositivo y la fecha/hora. Si falla, guarda el evento en eventos_locales.log y reintenta.</div>
+        </div>
+      </div>
+
+      <div class="step" style="--step-color:#00d4aa">
+        <div class="step-line"><div class="step-num">4</div><div class="step-connector"></div></div>
+        <div class="step-card">
+          <div class="step-who">API Gateway · auth.middleware.js</div>
+          <div class="step-action">El portero verifica que el dispositivo está autorizado</div>
+          <div class="step-detail">Valida el token JWT del dispositivo Raspberry. Si no tiene token válido, rechaza la petición con 401. Si pasa, la reenvía al servicio biométrico.</div>
+        </div>
+      </div>
+
+      <div class="step" style="--step-color:#60a5fa">
+        <div class="step-line"><div class="step-num">5</div><div class="step-connector"></div></div>
+        <div class="step-card">
+          <div class="step-who">BiometricService · matcher.js</div>
+          <div class="step-action">Compara el vector con los rostros registrados</div>
+          <div class="step-detail">Busca en la tabla RostroUsuario todos los vectores activos y calcula la distancia euclidiana. Si la distancia es menor a 0.6, el usuario es reconocido. Guarda un EventoFacial en la base de datos.</div>
+        </div>
+      </div>
+
+      <div class="step" style="--step-color:#fbbf24">
+        <div class="step-line"><div class="step-num">6</div><div class="step-connector"></div></div>
+        <div class="step-card">
+          <div class="step-who">Event Bus · eventBus.js</div>
+          <div class="step-action">Se emite el evento "facial_detected"</div>
+          <div class="step-detail">El BiometricService publica el evento con los datos del usuario, ambiente y timestamp. Varios servicios escuchan este evento al mismo tiempo.</div>
+        </div>
+      </div>
+
+      <div class="step" style="--step-color:#60a5fa">
+        <div class="step-line"><div class="step-num">7</div><div class="step-connector"></div></div>
+        <div class="step-card">
+          <div class="step-who">AttendanceService · validacion.js</div>
+          <div class="step-action">Valida si el aprendiz está en el ambiente correcto</div>
+          <div class="step-detail">Consulta el horario activo del aprendiz. Si el ambiente coincide → registra entrada/salida. Si no coincide → registra anomalía (ambienteIncorrecto). También calcula si hay retraso.</div>
+        </div>
+      </div>
+
+      <div class="step" style="--step-color:#fbbf24">
+        <div class="step-line"><div class="step-num">8</div><div class="step-connector"></div></div>
+        <div class="step-card">
+          <div class="step-who">Event Bus</div>
+          <div class="step-action">Se emite "attendance_registered" o "anomaly_found"</div>
+          <div class="step-detail">Dependiendo del resultado anterior, se lanza el evento correspondiente. El NotificationService escucha ambos y reacciona automáticamente.</div>
+        </div>
+      </div>
+
+      <div class="step" style="--step-color:#60a5fa">
+        <div class="step-line"><div class="step-num">9</div><div class="step-connector"></div></div>
+        <div class="step-card">
+          <div class="step-who">NotificationService · generator.js</div>
+          <div class="step-action">Genera notificación y envía correo si aplica</div>
+          <div class="step-detail">Crea un registro en la tabla Notificacion. Si el canal es EMAIL, usa el SMTP para enviar correo al instructor o acudiente. Guarda el resultado en EnvioCorreo.</div>
+        </div>
+      </div>
+
+      <div class="step" style="--step-color:#a78bfa">
+        <div class="step-line"><div class="step-num">10</div><div class="step-connector"></div></div>
+        <div class="step-card">
+          <div class="step-who">Frontend · websocket.js</div>
+          <div class="step-action">El dashboard se actualiza en tiempo real</div>
+          <div class="step-detail">El servidor envía la notificación por WebSocket. El Redux notifSlice actualiza el estado. El aprendiz ve su asistencia registrada y el contador de notificaciones sube.</div>
+        </div>
+      </div>
+
+      <div class="step" style="--step-color:#94a3b8">
+        <div class="step-line"><div class="step-num">11</div><div class="step-connector"></div></div>
+        <div class="step-card">
+          <div class="step-who">BitacoraSistema · logger.js</div>
+          <div class="step-action">Cada paso queda registrado en la bitácora</div>
+          <div class="step-detail">En cada paso del flujo se guarda: módulo, usuario, IP de origen, acción, resultado y fechaHora. Esto cumple los requerimientos RF-11 de auditoría.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== ESTADOS ===== -->
+  <section class="section" id="estados">
+    <div class="sec-title">Manejo de estados</div>
+
+    <div class="sec-title" style="margin-top:0;margin-bottom:16px;font-size:12px;color:var(--accent-purple)">Redux Store · Frontend</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:36px">
+
+      <div class="redux-box">
+        <div class="redux-title"><div class="dot" style="background:#60a5fa"></div> authSlice</div>
+        <div class="redux-fields">
+          <span class="key">user</span>: <span class="type">{ id, nombre, apellido }</span><br>
+          <span class="key">token</span>: <span class="type">string | null</span><br>
+          <span class="key">rol</span>: <span class="type">'admin' | 'instructor' | 'aprendiz'</span><br>
+          <span class="key">permisos</span>: <span class="type">string[]</span><br>
+          <span class="key">isAuthenticated</span>: <span class="type">boolean</span><br>
+          <span class="key">loading</span>: <span class="type">boolean</span><br>
+          <span class="comment">// persiste en localStorage cifrado</span>
+        </div>
+      </div>
+
+      <div class="redux-box">
+        <div class="redux-title"><div class="dot" style="background:#a78bfa"></div> uiSlice</div>
+        <div class="redux-fields">
+          <span class="key">tema</span>: <span class="type">'light' | 'dark'</span><br>
+          <span class="key">colorPrimario</span>: <span class="type">string</span><br>
+          <span class="key">colorSecundario</span>: <span class="type">string</span><br>
+          <span class="key">idioma</span>: <span class="type">'es' | 'en'</span><br>
+          <span class="key">sidebarOpen</span>: <span class="type">boolean</span><br>
+          <span class="comment">// RF-9.4 idioma · RF-9.5 colores</span>
+        </div>
+      </div>
+
+      <div class="redux-box">
+        <div class="redux-title"><div class="dot" style="background:#fbbf24"></div> notifSlice</div>
+        <div class="redux-fields">
+          <span class="key">items</span>: <span class="type">Notificacion[]</span><br>
+          <span class="key">unreadCount</span>: <span class="type">number</span><br>
+          <span class="key">wsConnected</span>: <span class="type">boolean</span><br>
+          <span class="comment">// se actualiza por WebSocket</span>
+        </div>
+      </div>
+
+      <div class="redux-box">
+        <div class="redux-title"><div class="dot" style="background:#00d4aa"></div> attendanceSlice</div>
+        <div class="redux-fields">
+          <span class="key">registros</span>: <span class="type">Registro[]</span><br>
+          <span class="key">filtros</span>: <span class="type">{ fecha, ficha, ambiente }</span><br>
+          <span class="key">estadoHoy</span>: <span class="type">'presente' | 'ausente' | 'tarde'</span><br>
+          <span class="key">loadingReporte</span>: <span class="type">boolean</span><br>
+          <span class="comment">// RF-7.6 historial tipo calendario</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sec-title" style="font-size:12px;color:var(--accent-teal)">Estados de entidades · Backend</div>
+    <div class="states-grid">
+
+      <div class="state-card">
+        <div class="state-name">Credencial</div>
+        <div class="state-scope">Tabla: Credencial · campo: estado</div>
+        <div class="badges-row">
+          <span class="sbadge green">activo</span>
+          <span class="sbadge yellow">bloqueado</span>
+          <span class="sbadge red">inactivo</span>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:10px;font-family:var(--mono)">intentosFallidos ≥ 5 → bloqueado (RNF-15.4)</div>
+      </div>
+
+      <div class="state-card">
+        <div class="state-name">RostroUsuario</div>
+        <div class="state-scope">Tabla: RostroUsuario · campo: estado</div>
+        <div class="badges-row">
+          <span class="sbadge green">activo</span>
+          <span class="sbadge red">revocado</span>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:10px;font-family:var(--mono)">Solo se usa el vector activo para el matching</div>
+      </div>
+
+      <div class="state-card">
+        <div class="state-name">EventoFacial</div>
+        <div class="state-scope">Tabla: EventoFacial · campos: resultado + estadoEnvio</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:10px">Resultado:</div>
+        <div class="badges-row">
+          <span class="sbadge green">reconocido</span>
+          <span class="sbadge red">desconocido</span>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:8px">Estado de envío:</div>
+        <div class="badges-row">
+          <span class="sbadge yellow">pendiente</span>
+          <span class="sbadge green">enviado</span>
+          <span class="sbadge red">fallido</span>
+        </div>
+      </div>
+
+      <div class="state-card">
+        <div class="state-name">Horario / Ambiente</div>
+        <div class="state-scope">Tablas: Horario, Ambiente · campo: estado</div>
+        <div class="badges-row">
+          <span class="sbadge green">activo</span>
+          <span class="sbadge yellow">suspendido</span>
+          <span class="sbadge red">cerrado</span>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:10px;font-family:var(--mono)">RF-2.3 restricciones · RF-2.4 excepciones</div>
+      </div>
+
+      <div class="state-card">
+        <div class="state-name">Excusa</div>
+        <div class="state-scope">Tabla: Excusa · campo: estado</div>
+        <div class="badges-row">
+          <span class="sbadge yellow">pendiente</span>
+          <span class="sbadge green">aprobada</span>
+          <span class="sbadge red">rechazada</span>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:10px;font-family:var(--mono)">RF-7.6.1 envío de excusas por ausencia</div>
+      </div>
+
+      <div class="state-card">
+        <div class="state-name">SesionUsuario</div>
+        <div class="state-scope">Tabla: SesionUsuario · campo: estadoSesion</div>
+        <div class="badges-row">
+          <span class="sbadge green">activa</span>
+          <span class="sbadge gray">cerrada</span>
+          <span class="sbadge red">expirada</span>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:10px;font-family:var(--mono)">RNF-14.2 sesiones seguras</div>
+      </div>
+
+      <div class="state-card">
+        <div class="state-name">RecuperacionContraseña</div>
+        <div class="state-scope">Tabla: RecuperacionContraseña · campo: estado</div>
+        <div class="badges-row">
+          <span class="sbadge yellow">pendiente</span>
+          <span class="sbadge green">usado</span>
+          <span class="sbadge red">expirado</span>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:10px;font-family:var(--mono)">RNF-15.1 tokens de un solo uso</div>
+      </div>
+
+      <div class="state-card">
+        <div class="state-name">FichaUsuario</div>
+        <div class="state-scope">Tabla: FichaUsuario · campo: estado</div>
+        <div class="badges-row">
+          <span class="sbadge green">activo</span>
+          <span class="sbadge gray">inactivo</span>
+          <span class="sbadge red">retirado</span>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:10px;font-family:var(--mono)">Controla si el aprendiz sigue en la ficha</div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+function toggleLayer(el) {
+  el.classList.toggle('open');
+}
+</script>
+</body>
+</html>
