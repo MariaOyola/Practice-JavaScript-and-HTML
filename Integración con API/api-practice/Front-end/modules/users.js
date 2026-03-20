@@ -1,7 +1,7 @@
 // Obtener todos los datos 
 async function getAllUsers() {
   let users = await queue(urlUsers, get);
-  let container = document.getElementById("container");
+  let container = document.getElementById("containerUsers");
   container.innerHTML = "";
   loadData(container, users);
 }
@@ -12,7 +12,7 @@ async function getUserById() {
 
   let user = await queue(urlUsers + "/" + id, get);
 
-  let container = document.getElementById("container");
+  let container = document.getElementById("containerUsers");
   container.innerHTML = "";
   loadData(container, user);
 }
@@ -69,7 +69,7 @@ async function deleteUser() {
 async function searchByName() {
   let name = document.getElementById("nameFilter").value;
   let users = await queue(urlUsers + "?firstName_like=" + name, get);
-  let container = document.getElementById("container");
+  let container = document.getElementById("containerUsers");
   container.innerHTML = "";
   loadData(container, users);
 }

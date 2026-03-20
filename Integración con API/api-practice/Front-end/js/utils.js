@@ -12,16 +12,28 @@ registers.forEach(register=>{
 
 }
 
-function loadTable(table,data){
+function loadTable(table, data) {
+    var register = document.createElement("tr");
 
-    
-    //creación de la estructura de la tabla    
-    var register=document.createElement("tr");
-     Object.values(data).forEach(element => {
-        const cell=document.createElement("td");
-        cell.innerText=element;
-        register.appendChild(cell);
-    });
+    // Detecta si es producto
+    if (data.title && data.price) {
+        register.innerHTML = `
+            <td>${data.id}</td>
+            <td>${data.title}</td>
+            <td>${data.price}</td>
+        `;
+    }
+
+    // Detecta si es usuario
+    else if (data.firstName && data.email) {
+        register.innerHTML = `
+            <td>${data.id}</td>
+            <td>${data.firstName}</td>
+            <td>${data.lastName}</td>
+            <td>${data.email}</td>
+        `;
+    }
+
     table.appendChild(register);
 }
 
