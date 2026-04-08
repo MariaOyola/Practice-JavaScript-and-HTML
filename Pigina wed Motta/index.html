@@ -58,10 +58,25 @@
       <div class="wl-card-title">Seleccionar Herramientas de Desarrollo</div>
       <div class="wl-card-desc">Evaluación y selección de las herramientas, frameworks, librerías y entornos de desarrollo más adecuados para construir el sistema propuesto.</div>
       <div class="wl-card-footer">
-        <div class="wl-card-points">En construcción</div>
+        <div class="wl-card-points">5 puntos</div>
         <div style="display:flex;align-items:center;gap:8px;">
           <span class="wl-card-status wl-status-progress">⏳ En progreso</span>
           <span class="wl-card-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TALLER 3 -->
+    <div class="wl-card wl-card-t3" id="wl-btn-t3">
+      <div class="wl-card-num" style="color:#a78bfa;">Taller 03</div>
+      <div class="wl-card-icon">⚙️</div>
+      <div class="wl-card-title">Configurar Herramientas de Desarrollo</div>
+      <div class="wl-card-desc">Instalación, configuración y verificación de cada herramienta del entorno de desarrollo: IDE, lenguajes, backend, frontend, base de datos, control de versiones y más.</div>
+      <div class="wl-card-footer">
+        <div class="wl-card-points" style="color:#a78bfa;border-color:rgba(167,139,250,0.3);background:rgba(167,139,250,0.07);">2 puntos</div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="wl-card-status" style="color:#a78bfa;border-color:rgba(167,139,250,0.3);background:rgba(167,139,250,0.07);">✓ Completado</span>
+          <span class="wl-card-arrow" style="color:#a78bfa;">→</span>
         </div>
       </div>
     </div>
@@ -199,6 +214,29 @@
           <span class="nav-num">05</span>
           <span class="nav-icon">🔗</span>
           <span class="nav-label">Relacionar herramientas con actividad</span>
+          <span class="nav-dot"></span>
+        </a>
+      </div>
+
+      <!-- ─── TALLER 3 NAV ─── -->
+      <div id="t3-nav" style="display:none;">
+        <div class="nav-section-label" style="margin-top:4px;">Índice</div>
+        <a class="nav-item" href="#" data-target="t3-home">
+          <span class="nav-num">00</span>
+          <span class="nav-icon">⌂</span>
+          <span class="nav-label">Vista general</span>
+          <span class="nav-dot"></span>
+        </a>
+        <a class="nav-item" href="#" data-target="t3-s1">
+          <span class="nav-num">01</span>
+          <span class="nav-icon">🔎</span>
+          <span class="nav-label">Características de cada herramienta</span>
+          <span class="nav-dot"></span>
+        </a>
+        <a class="nav-item" href="#" data-target="t3-s2">
+          <span class="nav-num">02</span>
+          <span class="nav-icon">📦</span>
+          <span class="nav-label">Instalación y configuración</span>
           <span class="nav-dot"></span>
         </a>
       </div>
@@ -3111,6 +3149,414 @@
       </section>
 
     </div><!-- end #t2-content -->
+
+    <!-- ═══════════════════════════════════════════
+         TALLER 3 CONTENT
+    ═══════════════════════════════════════════ -->
+    <div id="t3-content" style="display:none;">
+
+      <!-- T3 HOME -->
+      <section class="section active" id="t3-home">
+        <div class="content-full" style="margin-bottom:28px;">
+          <p>Configuración del entorno de desarrollo. Selecciona un punto del índice para explorar las características o los procedimientos de instalación de cada herramienta.</p>
+        </div>
+        <div class="t3-info-row">
+          <div class="s5-info-chip">📚 <strong>Competencia:</strong> Construcción del Software</div>
+          <div class="s5-info-chip">🎯 <strong>Actividad:</strong> Configurar herramientas de desarrollo</div>
+          <div class="s5-info-chip">👨‍🏫 <strong>Instructor:</strong> José de Jesús Motta Vargas</div>
+          <div class="s5-info-chip">👩‍💻 <strong>Autoras:</strong> M. Rodriguez · V. Trujillo · M. Valenzuela</div>
+        </div>
+        <div class="points-overview">
+          <a class="point-card t3-point-card" href="#" data-target="t3-s1">
+            <span class="point-card-num" style="color:#a78bfa;">01</span>
+            <span class="point-card-icon">🔎</span>
+            <span class="point-card-label">Características de cada herramienta</span>
+            <span class="point-card-status status-done">✓ Completado</span>
+          </a>
+          <a class="point-card t3-point-card" href="#" data-target="t3-s2">
+            <span class="point-card-num" style="color:#a78bfa;">02</span>
+            <span class="point-card-icon">📦</span>
+            <span class="point-card-label">Instalación y configuración</span>
+            <span class="point-card-status status-done">✓ Completado</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ─── T3 SECCIÓN 1: CARACTERÍSTICAS ─── -->
+      <section class="section" id="t3-s1">
+        <div class="section-header">
+          <div class="section-num" style="color:rgba(167,139,250,0.08);">01</div>
+          <div class="section-heading-area">
+            <div class="section-tag" style="color:#a78bfa;">Punto 01</div>
+            <h2>Características de Cada Herramienta</h2>
+          </div>
+        </div>
+        <div class="content-full" style="margin-bottom:28px;">
+          <p>Consulta de las <strong>características específicas</strong> de cada herramienta que se utilizará para el desarrollo del proyecto y su entorno.</p>
+        </div>
+
+        <div class="t3-tools-grid">
+
+          <div class="t3-tool-card" style="--tc:#007acc;">
+            <div class="t3-tc-header">
+              <div class="t3-tc-logo" style="background:#007acc;">
+                <svg width="18" height="18" viewBox="0 0 100 100" fill="none"><path d="M74.9 4.5L51.1 30.2 31.2 14.3 6.8 23.5v53l24.4 9.2 19.9-15.9 23.8 25.7L94 87V13L74.9 4.5zm0 67.5L56.6 50 75 28V72z" fill="white"/></svg>
+              </div>
+              <div>
+                <div class="t3-tc-name">Visual Studio Code</div>
+                <div class="t3-tc-type" style="color:#007acc;">IDE</div>
+              </div>
+            </div>
+            <p class="t3-tc-desc">Editor de código ligero y extensible, soporte para múltiples lenguajes, gran ecosistema de extensiones, integración con Git, depuración integrada y terminal incorporada.</p>
+            <div class="t3-tc-tags"><span style="--kt:#007acc;" class="t3-kw">Ligero</span><span style="--kt:#007acc;" class="t3-kw">Extensible</span><span style="--kt:#007acc;" class="t3-kw">Git integrado</span><span style="--kt:#007acc;" class="t3-kw">Depuración</span></div>
+          </div>
+
+          <div class="t3-tool-card" style="--tc:#f89820;">
+            <div class="t3-tc-header">
+              <div class="t3-tc-logo" style="background:#f89820;"><span style="font-size:16px;font-weight:800;color:#fff;font-family:'Syne',sans-serif;">J</span></div>
+              <div>
+                <div class="t3-tc-name">Java</div>
+                <div class="t3-tc-type" style="color:#f89820;">Lenguaje</div>
+              </div>
+            </div>
+            <p class="t3-tc-desc">Lenguaje orientado a objetos, multiplataforma gracias a la JVM, tipado estático, muy usado en aplicaciones empresariales y backend.</p>
+            <div class="t3-tc-tags"><span style="--kt:#f89820;" class="t3-kw">OOP</span><span style="--kt:#f89820;" class="t3-kw">JVM</span><span style="--kt:#f89820;" class="t3-kw">Tipado estático</span><span style="--kt:#f89820;" class="t3-kw">Empresarial</span></div>
+          </div>
+
+          <div class="t3-tool-card" style="--tc:#3572A5;">
+            <div class="t3-tc-header">
+              <div class="t3-tc-logo" style="background:#3572A5;"><span style="font-size:14px;font-weight:800;color:#fff;font-family:'Syne',sans-serif;">Py</span></div>
+              <div>
+                <div class="t3-tc-name">Python</div>
+                <div class="t3-tc-type" style="color:#3572A5;">Lenguaje</div>
+              </div>
+            </div>
+            <p class="t3-tc-desc">Lenguaje interpretado, sintaxis simple y legible, multiparadigma, ampliamente usado en backend, automatización, ciencia de datos e IA.</p>
+            <div class="t3-tc-tags"><span style="--kt:#3572A5;" class="t3-kw">Interpretado</span><span style="--kt:#3572A5;" class="t3-kw">Simple</span><span style="--kt:#3572A5;" class="t3-kw">IA / Data</span><span style="--kt:#3572A5;" class="t3-kw">Multiparadigma</span></div>
+          </div>
+
+          <div class="t3-tool-card" style="--tc:#6db33f;">
+            <div class="t3-tc-header">
+              <div class="t3-tc-logo" style="background:#6db33f;"><span style="font-size:18px;">🍃</span></div>
+              <div>
+                <div class="t3-tc-name">Spring Boot</div>
+                <div class="t3-tc-type" style="color:#6db33f;">Back-end</div>
+              </div>
+            </div>
+            <p class="t3-tc-desc">Framework para crear aplicaciones backend en Java rápidamente, configuración automática, arquitectura basada en microservicios, integración con bases de datos y APIs REST.</p>
+            <div class="t3-tc-tags"><span style="--kt:#6db33f;" class="t3-kw">API REST</span><span style="--kt:#6db33f;" class="t3-kw">Microservicios</span><span style="--kt:#6db33f;" class="t3-kw">Auto-config</span></div>
+          </div>
+
+          <div class="t3-tool-card" style="--tc:#61dafb;">
+            <div class="t3-tc-header">
+              <div class="t3-tc-logo" style="background:#20232a;border:1px solid #61dafb;"><span style="font-size:18px;">⚛️</span></div>
+              <div>
+                <div class="t3-tc-name">React 19</div>
+                <div class="t3-tc-type" style="color:#61dafb;">Front-end</div>
+              </div>
+            </div>
+            <p class="t3-tc-desc">Biblioteca para construir interfaces de usuario con componentes reutilizables, virtual DOM para mejor rendimiento y gran ecosistema.</p>
+            <div class="t3-tc-tags"><span style="--kt:#61dafb;" class="t3-kw">Componentes</span><span style="--kt:#61dafb;" class="t3-kw">Virtual DOM</span><span style="--kt:#61dafb;" class="t3-kw">Ecosistema</span></div>
+          </div>
+
+          <div class="t3-tool-card" style="--tc:#646cff;">
+            <div class="t3-tc-header">
+              <div class="t3-tc-logo" style="background:#646cff;"><span style="font-size:16px;font-weight:800;color:#fff;font-family:'Syne',sans-serif;">V</span></div>
+              <div>
+                <div class="t3-tc-name">Vite</div>
+                <div class="t3-tc-type" style="color:#646cff;">Front-end</div>
+              </div>
+            </div>
+            <p class="t3-tc-desc">Herramienta de desarrollo frontend rápida, servidor de desarrollo instantáneo, recarga en caliente (HMR) y optimización de builds.</p>
+            <div class="t3-tc-tags"><span style="--kt:#646cff;" class="t3-kw">HMR</span><span style="--kt:#646cff;" class="t3-kw">Rápido</span><span style="--kt:#646cff;" class="t3-kw">Builds optimizados</span></div>
+          </div>
+
+          <div class="t3-tool-card" style="--tc:#38bdf8;">
+            <div class="t3-tc-header">
+              <div class="t3-tc-logo" style="background:#0ea5e9;"><span style="font-size:13px;font-weight:800;color:#fff;font-family:'Syne',sans-serif;">TW</span></div>
+              <div>
+                <div class="t3-tc-name">Tailwind CSS</div>
+                <div class="t3-tc-type" style="color:#38bdf8;">Front-end</div>
+              </div>
+            </div>
+            <p class="t3-tc-desc">Framework CSS basado en clases utilitarias, permite diseñar interfaces rápidas sin escribir mucho CSS personalizado.</p>
+            <div class="t3-tc-tags"><span style="--kt:#38bdf8;" class="t3-kw">Utilitario</span><span style="--kt:#38bdf8;" class="t3-kw">Rápido</span><span style="--kt:#38bdf8;" class="t3-kw">Responsivo</span></div>
+          </div>
+
+          <div class="t3-tool-card" style="--tc:#336791;">
+            <div class="t3-tc-header">
+              <div class="t3-tc-logo" style="background:#336791;"><span style="font-size:12px;font-weight:800;color:#fff;font-family:'Syne',sans-serif;">SQL</span></div>
+              <div>
+                <div class="t3-tc-name">PostgreSQL</div>
+                <div class="t3-tc-type" style="color:#336791;">Base de datos</div>
+              </div>
+            </div>
+            <p class="t3-tc-desc">Sistema de gestión de bases de datos relacional, open source, muy robusto, soporta SQL avanzado, alta integridad de datos y extensibilidad.</p>
+            <div class="t3-tc-tags"><span style="--kt:#336791;" class="t3-kw">Open Source</span><span style="--kt:#336791;" class="t3-kw">ACID</span><span style="--kt:#336791;" class="t3-kw">SQL avanzado</span></div>
+          </div>
+
+          <div class="t3-tool-card" style="--tc:#f05032;">
+            <div class="t3-tc-header">
+              <div class="t3-tc-logo" style="background:#f05032;"><span style="font-size:13px;font-weight:800;color:#fff;font-family:'Syne',sans-serif;">Git</span></div>
+              <div>
+                <div class="t3-tc-name">Git</div>
+                <div class="t3-tc-type" style="color:#f05032;">Control de versiones</div>
+              </div>
+            </div>
+            <p class="t3-tc-desc">Sistema distribuido de control de versiones, permite rastrear cambios en el código, trabajar en equipo mediante ramas y mantener historial del proyecto.</p>
+            <div class="t3-tc-tags"><span style="--kt:#f05032;" class="t3-kw">Distribuido</span><span style="--kt:#f05032;" class="t3-kw">Ramas</span><span style="--kt:#f05032;" class="t3-kw">Historial</span></div>
+          </div>
+
+          <div class="t3-tool-card" style="--tc:#a78bfa;">
+            <div class="t3-tc-header">
+              <div class="t3-tc-logo" style="background:#a78bfa;"><span style="font-size:18px;">📐</span></div>
+              <div>
+                <div class="t3-tc-name">Draw.io</div>
+                <div class="t3-tc-type" style="color:#a78bfa;">Modelado</div>
+              </div>
+            </div>
+            <p class="t3-tc-desc">Herramienta para crear diagramas y modelos visuales como diagramas UML, arquitecturas de software, flujos de procesos y modelos de bases de datos.</p>
+            <div class="t3-tc-tags"><span style="--kt:#a78bfa;" class="t3-kw">UML</span><span style="--kt:#a78bfa;" class="t3-kw">Arquitectura</span><span style="--kt:#a78bfa;" class="t3-kw">Flujos</span></div>
+          </div>
+
+          <div class="t3-tool-card" style="--tc:#2496ed;">
+            <div class="t3-tc-header">
+              <div class="t3-tc-logo" style="background:#2496ed;"><span style="font-size:18px;">🐳</span></div>
+              <div>
+                <div class="t3-tc-name">Docker</div>
+                <div class="t3-tc-type" style="color:#2496ed;">Contenedorización</div>
+              </div>
+            </div>
+            <p class="t3-tc-desc">Plataforma para crear y ejecutar aplicaciones en contenedores, permite portabilidad entre entornos, aislamiento de dependencias y despliegue consistente.</p>
+            <div class="t3-tc-tags"><span style="--kt:#2496ed;" class="t3-kw">Contenedores</span><span style="--kt:#2496ed;" class="t3-kw">Portabilidad</span><span style="--kt:#2496ed;" class="t3-kw">Aislamiento</span></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ─── T3 SECCIÓN 2: INSTALACIÓN ─── -->
+      <section class="section" id="t3-s2">
+        <div class="section-header">
+          <div class="section-num" style="color:rgba(167,139,250,0.08);">02</div>
+          <div class="section-heading-area">
+            <div class="section-tag" style="color:#a78bfa;">Punto 02</div>
+            <h2>Instalación y Configuración</h2>
+          </div>
+        </div>
+        <div class="content-full" style="margin-bottom:28px;">
+          <p>Procedimientos paso a paso para instalar y configurar cada herramienta del entorno de desarrollo del proyecto.</p>
+        </div>
+
+        <!-- VS CODE -->
+        <div class="s1-block">
+          <div class="s1-block-label" style="color:#007acc;">💻 Visual Studio Code — IDE</div>
+          <div class="t3-install-group">
+            <div class="t3-install-phase">
+              <div class="t3-phase-title" style="--pc:#007acc;">Instalación</div>
+              <div class="t3-steps">
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#007acc;">1</span><div><strong>Descargar</strong> desde <code>https://code.visualstudio.com</code> → clic en <em>Download for Windows</em>.</div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#007acc;">2</span><div><strong>Ejecutar el instalador</strong> (.exe) · Aceptar términos · <em>Next</em> en todo.</div></div>
+                <div class="t3-step t3-step-warn"><span class="t3-step-num" style="--sc:#facc15;">!</span><div>Marcar: <code>Add to PATH</code> · <code>Create a desktop icon</code> · <code>Open with Code</code></div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#007acc;">3</span><div>Clic en <strong>Install</strong> → <strong>Finish</strong>. VS Code se abre automáticamente.</div></div>
+              </div>
+            </div>
+            <div class="t3-install-phase">
+              <div class="t3-phase-title" style="--pc:#007acc;">Configuración inicial</div>
+              <div class="t3-steps">
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#007acc;">1</span><div><strong>Idioma:</strong> Extensiones (<code>Ctrl+Shift+X</code>) → buscar <em>Spanish Language Pack</em> → instalar → reiniciar.</div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#007acc;">2</span><div><strong>Tema:</strong> <code>Ctrl+K</code> luego <code>Ctrl+T</code> → elegir tema (ej: Dark+).</div></div>
+              </div>
+            </div>
+            <div class="t3-install-phase">
+              <div class="t3-phase-title" style="--pc:#007acc;">Configuración para Java</div>
+              <div class="t3-steps">
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#007acc;">1</span><div>Instalar el <strong>JDK 17 o 21</strong> (ver sección Java abajo).</div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#007acc;">2</span><div>Configurar <code>JAVA_HOME</code> en variables de entorno del sistema.</div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#007acc;">3</span><div>Verificar en consola: <code>java -version</code> · <code>javac -version</code></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- JAVA -->
+        <div class="s1-block">
+          <div class="s1-block-label" style="color:#f89820;">☕ Java — Lenguaje de programación</div>
+          <div class="t3-install-group">
+            <div class="t3-install-phase">
+              <div class="t3-phase-title" style="--pc:#f89820;">Instalar JDK</div>
+              <div class="t3-steps">
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#f89820;">1</span><div><strong>Descargar</strong> desde Oracle o OpenJDK. URL: <code>https://www.oracle.com/java/technologies/downloads/</code></div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#f89820;">2</span><div>Ejecutar instalador → <em>Next → Next → Install</em> (ruta por defecto recomendada).</div></div>
+              </div>
+            </div>
+            <div class="t3-install-phase">
+              <div class="t3-phase-title" style="--pc:#f89820;">Variables de entorno (Windows)</div>
+              <div class="t3-steps">
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#f89820;">1</span><div>Buscar <em>"Variables de entorno"</em> → <em>Editar variables del sistema</em>.</div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#f89820;">2</span><div>Nueva variable: <code>JAVA_HOME</code> = <code>C:\Program Files\Java\jdk-21</code></div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#f89820;">3</span><div>Editar <code>Path</code> → agregar <code>%JAVA_HOME%\bin</code></div></div>
+              </div>
+            </div>
+            <div class="t3-install-phase">
+              <div class="t3-phase-title" style="--pc:#f89820;">Verificación y Hola Mundo</div>
+              <div class="t3-steps">
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#f89820;">1</span><div>En CMD: <code>java -version</code> · <code>javac -version</code> → si sale la versión ✓</div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#4fffb0;">✓</span><div class="t3-code-block"><pre>// HolaMundo.java
+public class HolaMundo {
+  public static void main(String[] args) {
+    System.out.println("Hola mundo");
+  }
+}</pre><div class="t3-code-cmds"><code>javac HolaMundo.java</code> → <code>java HolaMundo</code></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PYTHON -->
+        <div class="s1-block">
+          <div class="s1-block-label" style="color:#3572A5;">🐍 Python — Lenguaje de programación</div>
+          <div class="t3-install-group">
+            <div class="t3-install-phase">
+              <div class="t3-phase-title" style="--pc:#3572A5;">Instalación</div>
+              <div class="t3-steps">
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#3572A5;">1</span><div><strong>Descargar</strong> desde <code>https://python.org</code> la última versión.</div></div>
+                <div class="t3-step t3-step-warn"><span class="t3-step-num" style="--sc:#facc15;">!</span><div>Marcar obligatoriamente: <code>Add Python to PATH</code> → <em>Install Now</em>.</div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#3572A5;">2</span><div>Verificar: <code>python --version</code> · <code>pip --version</code></div></div>
+              </div>
+            </div>
+            <div class="t3-install-phase">
+              <div class="t3-phase-title" style="--pc:#3572A5;">Entorno virtual y librerías</div>
+              <div class="t3-steps">
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#3572A5;">1</span><div>Crear entorno: <code>python -m venv mi_entorno</code></div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#3572A5;">2</span><div>Activar (Windows): <code>mi_entorno\Scripts\activate</code></div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#3572A5;">3</span><div>Instalar librerías: <code>pip install numpy</code> · <code>pip install pandas</code></div></div>
+              </div>
+            </div>
+            <div class="t3-install-phase">
+              <div class="t3-phase-title" style="--pc:#3572A5;">Hola Mundo</div>
+              <div class="t3-steps">
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#4fffb0;">✓</span><div class="t3-code-block"><pre># hola.py
+print("Hola mundo")</pre><div class="t3-code-cmds"><code>python hola.py</code></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SPRING BOOT -->
+        <div class="s1-block">
+          <div class="s1-block-label" style="color:#6db33f;">🍃 Spring Boot — Backend</div>
+          <div class="t3-install-group">
+            <div class="t3-install-phase">
+              <div class="t3-phase-title" style="--pc:#6db33f;">Creación del proyecto (recomendado)</div>
+              <div class="t3-steps">
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#6db33f;">1</span><div>Ir a <code>https://start.spring.io</code> (Spring Initializr).</div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#6db33f;">2</span><div>Configurar: <strong>Project:</strong> Maven · <strong>Language:</strong> Java · <strong>Dependencies:</strong> Spring Web, DevTools.</div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#6db33f;">3</span><div>Clic en <strong>Generate</strong> → descargar ZIP → descomprimir → abrir en IDE.</div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#6db33f;">4</span><div>Ejecutar: <code>mvn spring-boot:run</code></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- REACT + VITE + TAILWIND -->
+        <div class="s1-block">
+          <div class="s1-block-label" style="color:#61dafb;">⚛️ React 19 + Vite + Tailwind CSS — Frontend</div>
+          <div class="t3-install-group">
+            <div class="t3-install-phase">
+              <div class="t3-phase-title" style="--pc:#646cff;">Requisito: Node.js</div>
+              <div class="t3-steps">
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#646cff;">1</span><div>Descargar versión <strong>LTS</strong> desde <code>https://nodejs.org</code>.</div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#646cff;">2</span><div>Verificar: <code>node -v</code> · <code>npm -v</code></div></div>
+              </div>
+            </div>
+            <div class="t3-install-phase">
+              <div class="t3-phase-title" style="--pc:#61dafb;">Crear proyecto React + Vite</div>
+              <div class="t3-steps">
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#61dafb;">1</span><div><code>npm create vite@latest</code> → nombre: <em>mi-app</em> · framework: <em>React</em> · variante: <em>JavaScript</em></div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#61dafb;">2</span><div><code>cd mi-app</code> → <code>npm install</code> → <code>npm run dev</code></div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#61dafb;">3</span><div>Abrir en navegador: <code>http://localhost:5173</code></div></div>
+              </div>
+            </div>
+            <div class="t3-install-phase">
+              <div class="t3-phase-title" style="--pc:#38bdf8;">Instalar Tailwind CSS</div>
+              <div class="t3-steps">
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#38bdf8;">1</span><div><code>npm install -D tailwindcss postcss autoprefixer</code></div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#38bdf8;">2</span><div><code>npx tailwindcss init -p</code></div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#38bdf8;">3</span><div>En <code>tailwind.config.js</code>: agregar <code>"./src/**/*.{js,ts,jsx,tsx}"</code> en <code>content</code>.</div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#38bdf8;">4</span><div>En <code>src/index.css</code>: <code>@tailwind base; @tailwind components; @tailwind utilities;</code></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- POSTGRESQL -->
+        <div class="s1-block">
+          <div class="s1-block-label" style="color:#336791;">🗄️ PostgreSQL — Base de Datos</div>
+          <div class="t3-install-group">
+            <div class="t3-install-phase">
+              <div class="t3-phase-title" style="--pc:#336791;">Instalación</div>
+              <div class="t3-steps">
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#336791;">1</span><div><strong>Descargar</strong> desde <code>https://www.postgresql.org/download/</code></div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#336791;">2</span><div>Ejecutar instalador → seguir pasos.</div></div>
+                <div class="t3-step t3-step-warn"><span class="t3-step-num" style="--sc:#facc15;">!</span><div>Definir contraseña del usuario <code>postgres</code> · Puerto: <strong>5432</strong> (por defecto).</div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#336791;">3</span><div>Incluye: <strong>pgAdmin</strong> (interfaz gráfica) + <strong>psql</strong> (línea de comandos).</div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#336791;">4</span><div>Verificar: <code>psql --version</code></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GIT -->
+        <div class="s1-block">
+          <div class="s1-block-label" style="color:#f05032;">🔁 Git — Control de Versiones</div>
+          <div class="t3-install-group">
+            <div class="t3-install-phase">
+              <div class="t3-phase-title" style="--pc:#f05032;">Instalación y configuración</div>
+              <div class="t3-steps">
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#f05032;">1</span><div><strong>Descargar</strong> desde <code>https://git-scm.com/downloads</code></div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#f05032;">2</span><div>Instalar → configuración inicial:</div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#4fffb0;">✓</span><div class="t3-code-block"><pre>git config --global user.name "Tu nombre"
+git config --global user.email "tu@email.com"</pre></div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#f05032;">3</span><div>Verificar: <code>git --version</code></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DRAW.IO -->
+        <div class="s1-block">
+          <div class="s1-block-label" style="color:#a78bfa;">📐 Draw.io — Modelado</div>
+          <div class="t3-install-group">
+            <div class="t3-install-phase">
+              <div class="t3-phase-title" style="--pc:#a78bfa;">Uso online o escritorio</div>
+              <div class="t3-steps">
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#a78bfa;">1</span><div><strong>Online (recomendado):</strong> <code>https://app.diagrams.net/</code></div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#a78bfa;">2</span><div><strong>Desktop:</strong> <code>https://github.com/jgraph/drawio-desktop/releases</code></div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#a78bfa;">✓</span><div>Permite: diagramas UML · modelado de BD · arquitectura de sistemas.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DOCKER -->
+        <div class="s1-block">
+          <div class="s1-block-label" style="color:#2496ed;">🐳 Docker — Contenedorización</div>
+          <div class="t3-install-group">
+            <div class="t3-install-phase">
+              <div class="t3-phase-title" style="--pc:#2496ed;">Instalación</div>
+              <div class="t3-steps">
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#2496ed;">1</span><div><strong>Descargar Docker Desktop</strong> desde <code>https://www.docker.com/products/docker-desktop/</code></div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#2496ed;">2</span><div>Instalar: <em>Next → Next → Finish</em> → reiniciar el equipo (Windows).</div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#2496ed;">3</span><div>Verificar: <code>docker --version</code></div></div>
+                <div class="t3-step"><span class="t3-step-num" style="--sc:#4fffb0;">✓</span><div>Probar: <code>docker run hello-world</code></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div><!-- end #t3-content -->
 
   </main>
 </div>

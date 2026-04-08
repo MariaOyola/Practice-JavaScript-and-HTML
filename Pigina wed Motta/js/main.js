@@ -68,42 +68,35 @@
 
   function enterTaller(tallerKey) {
     currentTaller = tallerKey;
-    const cfg = tallerKey === 't1' ? t1Config : t2Config;
+    const cfg = tallerKey === 't1' ? t1Config : tallerKey === 't2' ? t2Config : t3Config;
 
-    // Update sidebar text
     sbTag.textContent      = cfg.sbTag;
     sbTitle.textContent    = cfg.sbTitle;
     sbSubtitle.textContent = cfg.sbSubtitle;
     sbBadge.textContent    = cfg.sbBadge;
 
-    // Update hero
     heroEyebrow.textContent = cfg.eyebrow;
     heroH1.innerHTML        = cfg.h1;
     heroTaller.textContent  = cfg.metaTaller;
     heroPuntos.textContent  = cfg.metaPuntos;
     heroStatus.textContent  = cfg.metaStatus;
 
-    // Show/hide nav and content
     const t1NavItems = document.querySelectorAll('nav > a.nav-item, nav > .nav-section-label');
     t1NavItems.forEach(el => el.style.display = tallerKey === 't1' ? '' : 'none');
     t2Nav.style.display   = tallerKey === 't2' ? 'block' : 'none';
+    document.getElementById('t3-nav').style.display = tallerKey === 't3' ? 'block' : 'none';
+
     t1Content.style.display = tallerKey === 't1' ? 'block' : 'none';
     t2Content.style.display = tallerKey === 't2' ? 'block' : 'none';
+    document.getElementById('t3-content').style.display = tallerKey === 't3' ? 'block' : 'none';
 
-    // Taller 2 accent class
-    if (tallerKey === 't2') {
-      document.body.classList.add('taller2-active');
-    } else {
-      document.body.classList.remove('taller2-active');
-    }
+    document.body.classList.remove('taller2-active', 'taller3-active');
+    if (tallerKey === 't2') document.body.classList.add('taller2-active');
+    if (tallerKey === 't3') document.body.classList.add('taller3-active');
 
-    // Update progress
     updateProgress(cfg);
-
-    // Show default section
     showSection(cfg.defaultSection);
 
-    // Transition in
     welcomeScreen.classList.add('hiding');
     setTimeout(() => {
       welcomeScreen.classList.add('hidden');
@@ -121,9 +114,20 @@
     currentTaller = null;
   }
 
+  const t3Config = {
+    sbTag: 'Taller #03', sbTitle: 'Configurar Herramientas de Desarrollo',
+    sbSubtitle: 'Instalación · Configuración · Verificación', sbBadge: '2 puntos',
+    eyebrow: 'Configuración del entorno',
+    h1: 'Configurar<br/><span>Herramientas</span> de Desarrollo',
+    metaTaller: 'Taller 03', metaPuntos: '2 puntos', metaStatus: 'Completado',
+    completed: new Set([1,2]), total: 2,
+    defaultSection: 't3-home'
+  };
+
   // Welcome screen buttons
   document.getElementById('wl-btn-t1').addEventListener('click', () => enterTaller('t1'));
   document.getElementById('wl-btn-t2').addEventListener('click', () => enterTaller('t2'));
+  document.getElementById('wl-btn-t3').addEventListener('click', () => enterTaller('t3'));
   backBtn.addEventListener('click', backToWelcome);
 
   // ─── SECTION NAVIGATION ───
@@ -137,7 +141,7 @@
     const activeNav = document.querySelector(`.nav-item[data-target="${target}"]`);
     if (activeNav) activeNav.classList.add('active');
 
-    const cfg = currentTaller === 't1' ? t1Config : t2Config;
+    const cfg = currentTaller === 't1' ? t1Config : currentTaller === 't2' ? t2Config : t3Config;
     updateProgress(cfg);
   }
 
